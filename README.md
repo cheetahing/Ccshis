@@ -12,4 +12,7 @@
 - iot物联网化
 - 容器化
 
+### 项目结构图 ###
+![avatar](https://raw.githubusercontent.com/cheetahing/Ccshis/master/Document/%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
+
 copyright 智选云® [www.ccshis.com](http://www.ccshis.com)
