@@ -12,8 +12,7 @@ namespace Ccshis.Information.Sms.Ali
     /// data:2019-05-15
     /// opt:create
     /// </remarks> 
-    interface ISmsSender :IInformationSender
-    {
+    interface ISmsSender    {
         void Send(List<string> receivers, SmsInformation information);
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ccshis.Information.Sms.Ali
+﻿namespace Ccshis.Information.Sms.Ali
 {
     /// <summary>
     /// 阿里云短信配置
