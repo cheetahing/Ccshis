@@ -6,5 +6,6 @@ namespace Ccshis.Information
 {
     public interface IInformation
     {
+        string Body { get; set; }
     }
 }

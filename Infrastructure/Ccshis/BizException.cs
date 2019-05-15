@@ -9,7 +9,7 @@ namespace Ccshis
     /// </summary>
     /// <remarks>
     /// author:catdemon
-    /// data:2019-05-014
+    /// data:2019-05-14
     /// opt:create
     /// </remarks>
     public class BizException:CoreException
