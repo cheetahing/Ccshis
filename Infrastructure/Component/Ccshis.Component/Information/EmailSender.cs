@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using ECommon.Components;
 using ECommon.Logging;
 using ENode;
@@ -15,7 +16,7 @@ namespace Ccshis.Information.Email
     /// <param name="information">信息内容</param>
     /// <remarks>
     /// author:catdemon
-    /// data:2019-05-15
+    /// data:2019-05-16
     /// opt:create
     /// </remarks> 
     /// <exception cref="System.IO.IOException">调用网络错误</exception>
@@ -30,15 +31,19 @@ namespace Ccshis.Information.Email
         }
 
 
-        public void Send(List<string> receivers, EmaiInformation information)
+        public async Task SendAsync(List<string> receivers, EmaiInformation information)
         {
+            await Task.Run(() =>
+            { 
+                //todo 发送邮件
+            });
+
             _logger.Info("发送邮件成功:"+ JsonConvert.SerializeObject(new{ Receivers= receivers,Information= information }));
-            //todo 发送邮件
         }
 
-        void IInformationSender.Send<T>(List<string> receivers, T information)
+        async Task IInformationSender.SendAsync<T>(List<string> receivers, T information)
         {
-            this.Send(receivers, information as EmaiInformation);
+            await this.SendAsync(receivers, information as EmaiInformation);
         }
     }
 }

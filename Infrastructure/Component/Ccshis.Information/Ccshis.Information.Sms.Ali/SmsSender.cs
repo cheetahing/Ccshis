@@ -1,13 +1,22 @@
 ﻿using ECommon.Components;
+using ECommon.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Ccshis.Information.Sms.Ali
 {
     [Component]
     public class SmsSender: ISmsSender, IInformationSender
-    {        
+    {
+        private ILogger _logger;
+
+        public SmsSender(ILoggerFactory loggerFactory)
+        {
+            _logger = loggerFactory.Create(GetType().FullName);
+        }
+
         /// <summary>
         /// 发送短信
         /// </summary>
@@ -21,9 +30,13 @@ namespace Ccshis.Information.Sms.Ali
         /// <exception cref="System.IO.IOException">调用网络错误</exception>
         /// <exception cref="Ccshis.AuthorizeExcpetion">阿里云授权异常</exception>"
         /// <exception cref="Ccshis.BizException">业务异常</exception>
-        public void Send(List<string> receivers, SmsInformation information)
+        public async Task SendAsync(List<string> receivers, SmsInformation information)
         {
-            ///todo 发送短信逻辑
+            await Task.Run(() => 
+            {
+                ///todo 发送短信逻辑
+                //
+            });
             throw new NotImplementedException();
         }
 
@@ -39,9 +52,9 @@ namespace Ccshis.Information.Sms.Ali
         /// opt:create
         /// remark:显示实现接口
         /// </remarks> 
-        void IInformationSender.Send<T>(List<string> receivers, T information)
+        async Task IInformationSender.SendAsync<T>(List<string> receivers, T information)
         {
-            this.Send(receivers, information as SmsInformation);
+            await SendAsync(receivers, information as SmsInformation);
         }
     }
 }

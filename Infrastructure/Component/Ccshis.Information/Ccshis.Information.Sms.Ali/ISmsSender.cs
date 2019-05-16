@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Ccshis.Information.Sms.Ali
 {
@@ -12,7 +13,8 @@ namespace Ccshis.Information.Sms.Ali
     /// data:2019-05-15
     /// opt:create
     /// </remarks> 
-    interface ISmsSender    {
-        void Send(List<string> receivers, SmsInformation information);
+    interface ISmsSender
+    {
+        Task SendAsync(List<string> receivers, SmsInformation information);
     }
 }
