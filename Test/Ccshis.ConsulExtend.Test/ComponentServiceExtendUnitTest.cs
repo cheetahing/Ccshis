@@ -3,20 +3,15 @@ using ECommon.Components;
 using NUnit.Framework;
 using ECommon.Autofac;
 using Ccshis.ConsulComponent;
+using BaseTest;
 
 namespace Tests
 {
-    public class ComponentServicerExtendUnitTest
+    public class ComponentServicerExtendUnitTest:BaseTestClass
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void TestUseConsul()
         {
-            var componentService = ComponentService.Create() as IComponentService;
             /*
              * author:catdemon
              * date:2019-5-16
@@ -25,7 +20,6 @@ namespace Tests
              * 该测试没有心跳回应健康检查失败
             */
             componentService
-                .UseAutofac()
                 .UseConsul
                 (
                     new ConsulServerSetting()

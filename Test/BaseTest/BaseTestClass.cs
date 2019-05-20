@@ -1,0 +1,19 @@
+﻿using Ccshis;
+using NUnit.Framework;
+using System;
+
+namespace BaseTest
+{
+    public class BaseTestClass
+    {
+
+        protected IComponentService componentService;
+
+        [SetUp]
+        public void SetUp()
+        {
+            componentService = ComponentService.Create() as IComponentService;
+            componentService.UseAutofac();
+        }
+    }
+}

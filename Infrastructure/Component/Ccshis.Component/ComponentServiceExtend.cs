@@ -20,9 +20,9 @@ namespace Ccshis
             return componentService;
         }
 
-        public static IComponentService UseDefaultConfigurationService(this IComponentService componentService)
+        public static IComponentService UseDefaultConfigurationService(this IComponentService componentService,string defaultPath= DefaultConfiguationService.DefaultPath)
         {
-            componentService.SetDefault<IConfigurationService, DefaultConfiguationService>();
+            componentService.SetDefault<IConfigurationService, DefaultConfiguationService>(new DefaultConfiguationService(defaultPath));
 
             return componentService;
         }

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Ccshis\Ccshis.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Component\Ccshis.Component\Ccshis.Component.csproj" />
+  </ItemGroup>
+
+</Project>

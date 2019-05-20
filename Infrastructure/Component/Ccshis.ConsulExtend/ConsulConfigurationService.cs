@@ -19,7 +19,7 @@ namespace Ccshis.ConsulComponent
             _consulClien = consulClient;
         }
 
-        public T Get<T>(string key) where T:ISetting
+        public T Get<T>(string key) where T:class,ISetting
         {
             return JsonConvert.DeserializeObject<T>(Get(key));
         }
