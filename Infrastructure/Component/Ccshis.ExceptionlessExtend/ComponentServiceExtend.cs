@@ -4,14 +4,14 @@ using System;
 
 namespace Ccshis.ExceptionlessExtend
 {
-    public static class ComponentManagerExtend
+    public static class ComponentServiceExtend
     {
-        public static IComponentManager UseExceptionless(this IComponentManager componentManager, ExceptionlessSetting exceptionlessSetting)
+        public static IComponentService UseExceptionless(this IComponentService componentService, ExceptionlessSetting exceptionlessSetting)
         {
             initExceptionless(exceptionlessSetting);
 
-            componentManager.RegisterAssembly(typeof(ComponentManagerExtend).Assembly);
-            return componentManager;
+            componentService.RegisterAssembly(typeof(ComponentManagerExtend).Assembly);
+            return componentService;
         }
 
         private static void initExceptionless(ExceptionlessSetting exceptionlessSetting)

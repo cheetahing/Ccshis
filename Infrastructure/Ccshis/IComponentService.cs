@@ -19,9 +19,11 @@ namespace Ccshis
     /// 由于ecommon中容器管理是单例，不允许继承，架构把他的方法重新实现了一遍。
     /// 目前整个架构容器管理器默认使用autofac
     /// </remarks>
-    public interface IComponentManager
+    public interface IComponentService
     {
+
         void RegisterAssembly(Assembly assembly);
+
 
         #region ecommon ioc容器管理的相关方法
         /// <summary>

@@ -18,25 +18,27 @@ namespace Ccshis
     /// 使用ecomom的容器管理类，详细参见本类的接口里说明
     /// </remarks>
     [Component]
-    public class ComponentManager : IComponentManager
+    public class ComponentService : IComponentService
     {
         private List<Assembly> _assembliesList = new List<Assembly>();
 
-        public static ComponentManager SingleInstance;
+        public static IComponentService SingleInstance;
 
         /// <summary>
         /// enode配置组件
         /// </summary>
-        private Configuration componentsConfiguration { get; set; }
+        public Configuration ComponentsConfiguration { get; set; }
 
-        private ComponentManager() { }
+        private ComponentService() { }
 
-        public static ComponentManager Create()
+        public static IComponentService Create()
         {
-            SingleInstance = new ComponentManager();
+            var componentService = new ComponentService();
+            componentService.ComponentsConfiguration = Configuration.Create();
+
+            SingleInstance = componentService as IComponentService;
             return SingleInstance;
         }
-
 
         public void RegisterAssembly(Assembly assembly)
         {
@@ -45,28 +47,28 @@ namespace Ccshis
 
         public Configuration BuildContainer()
         {
-            return componentsConfiguration.BuildContainer();
+            return ComponentsConfiguration.BuildContainer();
         }
         public Configuration RegisterCommonComponents()
         {
             //todo 初始化通用组件
-            return componentsConfiguration.RegisterCommonComponents();
+            return ComponentsConfiguration.RegisterCommonComponents();
         }
         public Configuration RegisterUnhandledExceptionHandler()
         {
-            return componentsConfiguration.RegisterUnhandledExceptionHandler();
+            return ComponentsConfiguration.RegisterUnhandledExceptionHandler();
         }
         public Configuration SetDefault<TService, TImplementer>(string serviceName = null, LifeStyle life = LifeStyle.Singleton)
             where TService : class
             where TImplementer : class, TService
         {
-            return componentsConfiguration.SetDefault<TService, TImplementer>(serviceName, life);
+            return ComponentsConfiguration.SetDefault<TService, TImplementer>(serviceName, life);
         }
         public Configuration SetDefault<TService, TImplementer>(TImplementer instance, string serviceName = null)
             where TService : class
             where TImplementer : class, TService
         {
-            return componentsConfiguration.SetDefault<TService, TImplementer>(instance, serviceName);
+            return ComponentsConfiguration.SetDefault<TService, TImplementer>(instance, serviceName);
         }
     }
 }

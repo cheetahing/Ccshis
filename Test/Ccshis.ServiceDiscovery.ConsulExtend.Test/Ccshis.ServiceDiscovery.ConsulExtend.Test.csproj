@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Component\Ccshis.Component\Ccshis.Component.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Component\Ccshis.ServiceDiscovery.ConsulExtend\Ccshis.ServiceDiscovery.ConsulExtend.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Component\Ccshis.ConsulExtend\Ccshis.ConsulComponent.csproj" />
   </ItemGroup>
 
 </Project>

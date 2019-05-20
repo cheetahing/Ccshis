@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ccshis
+namespace Ccshis.ConsulComponent
 {
-    public interface IConfigurationManager
+    interface IConsulServices
     {
     }
 }

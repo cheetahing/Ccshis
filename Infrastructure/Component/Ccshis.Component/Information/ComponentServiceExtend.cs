@@ -9,20 +9,20 @@
     /// opt:create
     /// </remarks> 
     /// <example>
-    /// componentManager.UseEmail(emailSetting);
+    /// componentService.UseEmail(emailSetting);
     /// </example>
-    public static class ComponentManagerExtend
+    public static class ComponentServiceExtend
     {
         /// <summary>
         /// 注册使用电子邮件组件
         /// </summary>
-        /// <param name="IComponentManager">IComponentManager</param>
+        /// <param name="IComponentService">IComponentService</param>
         /// <param name="emailSetting">发件邮箱配置项</param>
         /// <returns></returns>
-        public static IComponentManager UseEmail(this IComponentManager componentManager,EmailSetting emailSetting)
+        public static IComponentService UseEmail(this IComponentService componentService,EmailSetting emailSetting)
         {
-            componentManager.RegisterAssembly(typeof(ComponentManagerExtend).Assembly);
-            return componentManager;
+            componentService.RegisterAssembly(typeof(ComponentServiceExtend).Assembly);
+            return componentService;
         }
     }
 }

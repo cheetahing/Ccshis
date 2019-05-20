@@ -2,14 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Ccshis</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Consul" Version="0.7.2.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Ccshis\Ccshis.csproj" />
+    <Compile Remove="Configuration\ConsulSetting.cs" />
   </ItemGroup>
 
 </Project>

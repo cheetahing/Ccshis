@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ccshis.Job
 {
-    public interface IJobManager
+    public interface IJobService
     {
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ccshis.Information
 {
-    public interface IInformationSender
+    public interface IInformationSenderService
     {
         Task SendAsync<T>(List<string> receivers, T information) where T:IInformation;
     }

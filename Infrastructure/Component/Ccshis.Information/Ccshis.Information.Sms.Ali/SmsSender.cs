@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Ccshis.Information.Sms.Ali
 {
     [Component]
-    public class SmsSender: ISmsSender, IInformationSender
+    public class SmsSender: ISmsSender, IInformationSenderService
     {
         private ILogger _logger;
 
@@ -52,7 +52,7 @@ namespace Ccshis.Information.Sms.Ali
         /// opt:create
         /// remark:显示实现接口
         /// </remarks> 
-        async Task IInformationSender.SendAsync<T>(List<string> receivers, T information)
+        async Task IInformationSenderService.SendAsync<T>(List<string> receivers, T information)
         {
             await SendAsync(receivers, information as SmsInformation);
         }

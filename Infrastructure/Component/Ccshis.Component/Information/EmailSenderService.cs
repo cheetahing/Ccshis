@@ -21,11 +21,11 @@ namespace Ccshis.Information.Email
     /// </remarks> 
     /// <exception cref="System.IO.IOException">调用网络错误</exception>
     [Component]
-    public class EmailSender : IEmailSender, IInformationSender
+    public class EmailSenderService : IEmailSenderService, IInformationSenderService
     {
         private readonly ILogger _logger;
 
-        public EmailSender(ILoggerFactory loggerFactory)
+        public EmailSenderService(ILoggerFactory loggerFactory)
         {
             this._logger = loggerFactory.Create(GetType().FullName);
         }
@@ -41,7 +41,7 @@ namespace Ccshis.Information.Email
             _logger.Info("发送邮件成功:"+ JsonConvert.SerializeObject(new{ Receivers= receivers,Information= information }));
         }
 
-        async Task IInformationSender.SendAsync<T>(List<string> receivers, T information)
+        async Task IInformationSenderService.SendAsync<T>(List<string> receivers, T information)
         {
             await this.SendAsync(receivers, information as EmaiInformation);
         }

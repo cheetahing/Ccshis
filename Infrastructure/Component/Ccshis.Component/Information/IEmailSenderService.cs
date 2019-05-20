@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ccshis.Information.Email
 {
-    public interface IEmailSender
+    public interface IEmailSenderService
     {
         Task SendAsync(List<string> receivers, EmaiInformation information);
     }
