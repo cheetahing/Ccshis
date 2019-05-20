@@ -16,7 +16,7 @@ namespace Ccshis.ConsulExtend.Test
                 .UseDefaultConfigurationService()
                 .BuildContainer();
             var configurationService=ObjectContainer.Resolve<IConfigurationService>();
-            var test=configurationService.Get("test.json");
+            var test=configurationService.GetAsync("test.json").GetAwaiter().GetResult();
 
         }
     }

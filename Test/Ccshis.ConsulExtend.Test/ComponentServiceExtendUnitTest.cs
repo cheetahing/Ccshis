@@ -50,7 +50,7 @@ namespace Tests
                 });
 
             var configurationService = ObjectContainer.Resolve<IConfigurationService>();
-            var result = configurationService.Get("test/t1");
+            var result = configurationService.GetAsync("test/t1");
 
             componentService.CloseConsul();
         }

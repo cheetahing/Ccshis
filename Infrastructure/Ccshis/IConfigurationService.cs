@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Ccshis
 {
     public interface IConfigurationService
     {
-        T Get<T>(string key) where T:class,ISetting;
+        Task<T> GetAsync<T>(string key) where T : class, ISetting;
 
-        string Get(string key);
+        Task<string> GetAsync(string key);
     }
 }

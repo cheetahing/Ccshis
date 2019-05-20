@@ -19,15 +19,15 @@ namespace Ccshis.ConsulComponent
             _consulClien = consulClient;
         }
 
-        public T Get<T>(string key) where T:class,ISetting
+        public async Task<T> GetAsync<T>(string key) where T:class,ISetting
         {
-            return JsonConvert.DeserializeObject<T>(Get(key));
+            return JsonConvert.DeserializeObject<T>(await GetAsync(key));
         }
 
 
-        public string Get(string key)
+        public async Task<string> GetAsync(string key)
         {
-            return GetConfigByConsul(key).GetAwaiter().GetResult();
+            return await GetConfigByConsul(key);
         }
 
         public async Task<string> GetConfigByConsul(string key)

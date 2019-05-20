@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Ccshis
 {
@@ -40,15 +41,15 @@ namespace Ccshis
         /// authro:catdemon
         /// date:2019-5-20
         /// </remarks>
-        public T Get<T>(string key) where T : class,ISetting
+        public async Task<T> GetAsync<T>(string key) where T : class, ISetting
         {
             //从缓存获取key
-            if(_cache.ContainsKey(key))
+            if (_cache.ContainsKey(key))
             {
                 return _cache[key] as T;
             }
 
-            var fileContent = Get(Path.Combine(_filePath, key));
+            var fileContent = await GetAsync(Path.Combine(_filePath, key));
             var setting = JsonConvert.DeserializeObject<T>(fileContent);
 
             _cache[key] = setting;
@@ -65,9 +66,12 @@ namespace Ccshis
         /// authro:catdemon
         /// date:2019-5-20
         /// </remarks>
-        public string Get(string key)
+        public async Task<string> GetAsync(string key)
         {
-            return File.ReadAllText(Path.Combine(_filePath, key));
+            return await Task.Run(() =>
+            {
+                return File.ReadAllText(Path.Combine(_filePath, key));
+            });
         }
     }
 }
