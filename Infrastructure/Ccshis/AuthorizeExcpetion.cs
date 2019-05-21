@@ -23,7 +23,7 @@ namespace Ccshis
         /// <param name="message">异常消息</param>
         /// <param name="localizationCode">多语言编码</param>
         /// <param name="innerException">内部异常</param>
-        public AuthorizeExcpetion(string message = "", int localizationCode = 0, Exception innerException = null) 
+        public AuthorizeExcpetion(string message = SystemConst.EmptyString, string localizationCode = SystemConst.ValueIsEmpty, Exception innerException = null) 
             : base(message, localizationCode,innerException)
         {
 

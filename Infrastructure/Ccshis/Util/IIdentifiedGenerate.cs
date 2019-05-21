@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Ccshis.Util
 {
-    public class IdentifiedGenerate
+    public interface IIdentifiedGenerateService
     {
+        long GetIdentified();
     }
 }

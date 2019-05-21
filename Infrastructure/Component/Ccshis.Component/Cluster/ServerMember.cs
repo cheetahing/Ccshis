@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Ccshis.Cluster
 {
-    public class Server : IServerNode
+    public class ServerMember : IServerMember
     {
         public long Id { get; set; }
 
-        public VirtualizationEnum Virtualization { get; set; }
+        public Virtualization Virtualization { get; set; }
 
         public IPAddress IPAddress { get; set; }
 

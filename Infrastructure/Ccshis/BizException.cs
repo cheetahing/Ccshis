@@ -14,7 +14,7 @@ namespace Ccshis
     /// </remarks>
     public class BizException:CoreException
     {
-        public BizException(string message = "", int localizationCode = 0, Exception innerException = null)
+        public BizException(string message = SystemConst.EmptyString, string localizationCode = SystemConst.ValueIsEmpty, Exception innerException = null)
            :base(message,localizationCode,innerException)
         {
 

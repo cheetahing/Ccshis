@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccshis.Share", "Ccshis.Share\Ccshis.Share.csproj", "{F210DAAE-EB2A-4FF3-932B-F0B9F8230225}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccshis.Shared", "Ccshis.Shared\Ccshis.Shared.csproj", "{DD9E0939-B581-4886-AC36-3D9F34FC0784}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F210DAAE-EB2A-4FF3-932B-F0B9F8230225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F210DAAE-EB2A-4FF3-932B-F0B9F8230225}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F210DAAE-EB2A-4FF3-932B-F0B9F8230225}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F210DAAE-EB2A-4FF3-932B-F0B9F8230225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD9E0939-B581-4886-AC36-3D9F34FC0784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD9E0939-B581-4886-AC36-3D9F34FC0784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD9E0939-B581-4886-AC36-3D9F34FC0784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD9E0939-B581-4886-AC36-3D9F34FC0784}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

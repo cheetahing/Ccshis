@@ -1,9 +1,9 @@
 ﻿namespace Ccshis.Cluster
 {
     /// <summary>
-    /// 服务器类型
+    /// 虚拟化类型
     /// </summary>
-    public enum VirtualizationEnum
+    public enum Virtualization
     {
         /// <summary>
         /// docker容器
@@ -12,7 +12,7 @@
 
         /// <summary>
         /// 实体服务器或虚拟机
-        /// </summary>
+        /// </summary> 
         Machine=1
     }
 }

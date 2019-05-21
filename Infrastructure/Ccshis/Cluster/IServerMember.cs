@@ -8,7 +8,7 @@ namespace Ccshis.Cluster
     /// <summary>
     /// 服务节点
     /// </summary>
-    public interface IServerNode
+    public interface IServerMember
     {
         /// <summary>
         /// 服务器Id
@@ -18,7 +18,7 @@ namespace Ccshis.Cluster
         /// <summary>
         /// 虚拟化类型
         /// </summary>
-        VirtualizationEnum Virtualization { get; }
+        Virtualization Virtualization { get; }
 
         /// <summary>
         /// 服务器地址

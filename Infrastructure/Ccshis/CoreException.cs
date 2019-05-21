@@ -17,7 +17,7 @@ namespace Ccshis
         /// <summary>
         /// 多语言编号
         /// </summary>
-        public int LocalizationCode { get; private set; }
+        public string LocalizationCode { get; private set; }
 
         /// <summary>
         /// 核心异常类
@@ -26,7 +26,7 @@ namespace Ccshis
         /// <param name="message">异常消息</param>
         /// <param name="localizationCode">多语言编码</param>
         /// <param name="innerException">内部异常</param>
-        public CoreException(string message="",int localizationCode=0,Exception innerException=null):base(message,innerException)
+        public CoreException(string message= SystemConst.EmptyString, string localizationCode= SystemConst.ValueIsEmpty, Exception innerException=null):base(message,innerException)
         {
             this.LocalizationCode = localizationCode;
         }

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Configuration\ConsulSetting.cs" />
+    <ProjectReference Include="..\..\Infrastructure\Ccshis\Ccshis.csproj" />
   </ItemGroup>
 
 </Project>

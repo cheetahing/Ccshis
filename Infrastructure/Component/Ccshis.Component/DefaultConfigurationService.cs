@@ -10,7 +10,7 @@ namespace Ccshis
     /// <summary>
     /// 默认配置服务，默认采用文件配置方式
     /// </summary>
-    public class DefaultConfiguationService : IConfigurationService
+    public class DefaultConfiguationService : IConfigurationService,IFileConfigurationService
     {
 
         public const string DefaultPath = "ConfigurationSetting";
@@ -49,7 +49,14 @@ namespace Ccshis
                 return _cache[key] as T;
             }
 
-            var fileContent = await GetAsync(Path.Combine(_filePath, key));
+            string filePath = getFilePath(key);
+
+            if(File.Exists(filePath))
+            {
+                return null;
+            }
+
+            var fileContent = await GetAsync(filePath);
             var setting = JsonConvert.DeserializeObject<T>(fileContent);
 
             _cache[key] = setting;
@@ -70,8 +77,74 @@ namespace Ccshis
         {
             return await Task.Run(() =>
             {
-                return File.ReadAllText(Path.Combine(_filePath, key));
+                return File.ReadAllText(getFilePath(key));
             });
+        }
+
+        /// <summary>
+        /// 设置配置
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// author:catdemon
+        /// date:2019-5-21
+        /// </remarks>
+        public async Task SetAsync<T>(string key, T value) where T:class,ISetting
+        {
+            await SetAsync(key, JsonConvert.SerializeObject(value));
+        }
+
+        /// <summary>
+        /// 设置配置
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// author:catdemon
+        /// date:2019-5-21
+        /// </remarks>
+        public async Task SetAsync(string key, string value)
+        {
+            var filePath = getFilePath(key);
+
+            await Task.Run(() =>
+            {
+                createFile(filePath);
+
+                File.WriteAllText(filePath, value);
+            });
+        }
+
+        /// <summary>
+        /// 如果配置文件不存在，则创建配置文件
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <remarks>
+        /// author:catdemon
+        /// date:2019-5-21
+        /// </remarks>
+        private void createFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                var dir = Path.GetDirectoryName(filePath);
+                Directory.CreateDirectory(dir);
+                using (var filr = File.Create(filePath)) { }
+            }
+        }
+
+        /// <summary>
+        /// 获取文件路径
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        private string getFilePath(string key)
+        {
+            return Path.Combine(_filePath, key);
         }
     }
 }

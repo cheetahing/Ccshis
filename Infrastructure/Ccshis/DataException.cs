@@ -14,7 +14,7 @@ namespace Ccshis
     /// </remarks>
     public class DataException:CoreException
     {
-        public DataException(string message = "", int localizationCode = 0, Exception innerException = null)
+        public DataException(string message = SystemConst.EmptyString, string localizationCode = SystemConst.ValueIsEmpty, Exception innerException = null)
            : base(message, localizationCode, innerException)
         {
         }

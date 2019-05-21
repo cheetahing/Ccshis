@@ -12,8 +12,10 @@ namespace BaseTest
         [SetUp]
         public void SetUp()
         {
-            componentService = ComponentService.Create() as IComponentService;
-            componentService.UseAutofac();
+            componentService = ComponentService.Create();
+            componentService
+                .UseAutofac()
+                .UseCommonComponent();
         }
     }
 }
