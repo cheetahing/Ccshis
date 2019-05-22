@@ -1,11 +1,13 @@
 ﻿using Ccshis.Settings.Cluster;
 using Ccshis.Share;
+using ECommon.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Ccshis.Cluster
 {
+    [Component]
     public class ClusterService : IClusterService
     {
         /// <summary>
