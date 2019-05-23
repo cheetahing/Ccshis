@@ -51,7 +51,7 @@ namespace Ccshis
 
             string filePath = getFilePath(key);
 
-            if(File.Exists(filePath))
+            if(!File.Exists(filePath))
             {
                 return null;
             }
