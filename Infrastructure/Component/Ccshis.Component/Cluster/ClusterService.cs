@@ -1,5 +1,4 @@
 ﻿using Ccshis.Settings.Cluster;
-using Ccshis.Share;
 using System;
 using System.Collections.Generic;
 using System.Text;

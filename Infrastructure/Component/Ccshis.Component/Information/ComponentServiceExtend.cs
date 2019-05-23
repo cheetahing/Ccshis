@@ -19,7 +19,7 @@
         /// <param name="IComponentService">IComponentService</param>
         /// <param name="emailSetting">发件邮箱配置项</param>
         /// <returns></returns>
-        public static IComponentService UseEmail(this IComponentService componentService,EmailSetting emailSetting)
+        public static IComponentService UseEmail(this IComponentService componentService)
         {
             componentService.RegisterAssembly(typeof(ComponentServiceExtend).Assembly);
             return componentService;

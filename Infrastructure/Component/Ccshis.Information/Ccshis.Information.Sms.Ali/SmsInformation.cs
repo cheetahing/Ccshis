@@ -22,11 +22,24 @@ namespace Ccshis.Information.Sms.Ali
         /// <summary>
         /// 短信签名
         /// </summary>
-        public string Signs { get; set; }
+        public string SignName { get; set; }
 
         /// <summary>
         /// 发送信息的内容
         /// </summary>
-        public string Body { get; set; }
+        string IInformation.Body { get; set; }
+
+
+        public string TemplateParam
+        {
+            get
+            {
+                return (this as IInformation).Body;
+            }
+            set
+            {
+                (this as IInformation).Body = value;
+            }
+        }
     }
 }

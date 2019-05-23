@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ccshis.Share
+namespace Ccshis
 {
     /// <summary>
     /// 配置文件路径
@@ -15,5 +15,7 @@ namespace Ccshis.Share
         /// 服务器节点成员配置文件路径
         /// </summary>
         public const string ServerMemberSettingPath = "/Cluster/ServerMemberSetting.json";
+
+        public const string AliYunApiSettingPath = "AliYunApiSetting.json";
     }
 }
