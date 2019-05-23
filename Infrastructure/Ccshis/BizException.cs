@@ -19,5 +19,10 @@ namespace Ccshis
         {
 
         }
+        public BizException(Enum[] messageCode = null, Enum[] localizationCode = null, Exception innerException = null)
+            : base(messageCode, localizationCode, innerException)
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ccshis.Util;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,6 +18,12 @@ namespace Ccshis
         public DataException(string message = SystemConst.EmptyString, string localizationCode = SystemConst.ValueIsEmpty, Exception innerException = null)
            : base(message, localizationCode, innerException)
         {
+        }
+
+        public DataException(Enum[] messageCode = null, Enum[] localizationCode = null, Exception innerException = null)
+            : base(messageCode, localizationCode,innerException)
+        {
+
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using Ccshis.Util;
 
 namespace Ccshis
 {
@@ -26,10 +28,16 @@ namespace Ccshis
         /// <param name="message">异常消息</param>
         /// <param name="localizationCode">多语言编码</param>
         /// <param name="innerException">内部异常</param>
-        public CoreException(string message= SystemConst.EmptyString, string localizationCode= SystemConst.ValueIsEmpty, Exception innerException=null):base(message,innerException)
+        public CoreException(string message= SystemConst.EmptyString, string localizationCode= SystemConst.ValueIsEmpty, Exception innerException=null)
+            :base(message,innerException)
         {
             this.LocalizationCode = localizationCode;
         }
 
+        public CoreException(Enum[] messageCode=null, Enum[] localizationCode=null, Exception innerException = null) 
+            : base(StringUtil.SplitJoint(messageCode), innerException)
+        {
+            LocalizationCode = StringUtil.SplitJoint(localizationCode);
+        }
     }
 }

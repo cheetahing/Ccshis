@@ -30,6 +30,12 @@ namespace Ccshis.Information.Sms.Ali
         string IInformation.Body { get; set; }
 
 
+        /// <summary>
+        /// 模板参数，json格式字符串
+        /// </summary>
+        /// <example>
+        /// {'cdoe':'12345'}
+        /// </example>
         public string TemplateParam
         {
             get

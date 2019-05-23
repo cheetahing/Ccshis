@@ -15,7 +15,7 @@ namespace Ccshis.Information.Sms.Ali
     /// </remarks> 
     interface ISmsSender
     {
-        Task SendAsync(List<string> receivers, SmsInformation information);
+        Task SendAsync(string[] receivers, SmsInformation information);
 
         Task SendAsync(string receivers, SmsInformation information);
     }

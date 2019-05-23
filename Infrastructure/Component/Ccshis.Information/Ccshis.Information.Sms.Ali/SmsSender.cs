@@ -3,6 +3,7 @@ using Aliyun.Acs.Core.Exceptions;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Profile;
 using Ccshis.Settings;
+using Ccshis.Util;
 using ECommon.Components;
 using ECommon.Logging;
 using Newtonsoft.Json;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 namespace Ccshis.Information.Sms.Ali
 {
     [Component]
-    public class SmsSender: ISmsSender
+    public class SmsSender : ISmsSender
     {
         private const string _aliApiDomain = "dysmsapi.aliyuncs.com";
         private const string _aliApiVersion = "2017-05-25";
@@ -55,102 +56,62 @@ namespace Ccshis.Information.Sms.Ali
         /// <exception cref="System.IO.IOException">调用网络错误</exception>
         /// <exception cref="Ccshis.AuthorizeExcpetion">阿里云授权异常</exception>"
         /// <exception cref="Ccshis.BizException">业务异常</exception>
-        public async Task SendAsync(List<string> receivers, SmsInformation information)
+        public async Task SendAsync(string[] receivers, SmsInformation information)
         {
             await send(receivers, information);
         }
 
-        private async Task send(List<string> receivers, SmsInformation information)
+        private async Task send(string[] receivers, SmsInformation information)
         {
             await Task.Run(() =>
             {
-                ///todo 发送短信逻辑
+                IClientProfile profile = DefaultProfile.GetProfile(_profile_default, _aliYunApiSetting.accessKeyId, _aliYunApiSetting.secret);
+                DefaultAcsClient client = new DefaultAcsClient(profile);
+                CommonRequest request = new CommonRequest();
 
+                request.Method = MethodType.POST;
+                request.Domain = _aliApiDomain;
+                request.Version = _aliApiVersion;
+                request.Action = _AliApiAction;
+                // request.Protocol = ProtocolType.HTTP;
 
-                 IClientProfile profile = DefaultProfile.GetProfile(_profile_default, _aliYunApiSetting.accessKeyId, _aliYunApiSetting.secret);
-                 DefaultAcsClient client = new DefaultAcsClient(profile);
-                 CommonRequest request = new CommonRequest();
-                 request.Method = MethodType.POST;
+                string phoneNumbers = StringUtil.SplitJoint(receivers);
 
-                 request.Domain = _aliApiDomain;
-                 request.Version = _aliApiVersion;
-                 request.Action = _AliApiAction;
-                 // request.Protocol = ProtocolType.HTTP;
+                request.AddQueryParameters(_param_PhoneNumbers, phoneNumbers);
+                request.AddQueryParameters(_param_SignName, information.SignName);
+                request.AddQueryParameters(_param_TemplateCode, information.TemplateCode);
+                request.AddQueryParameters(_param_TemplateParam, information.TemplateParam);
 
-                 string phoneNumbers = buildPhoneNumbers(receivers);
-                
+                try
+                {
+                    CommonResponse response = client.GetCommonResponse(request);
+                    var apiResult = JsonConvert.DeserializeObject<AliApiResult>(response.Data);
 
-                
-                
-
-
-                 request.AddQueryParameters(_param_PhoneNumbers, phoneNumbers);
-                 request.AddQueryParameters(_param_SignName, information.SignName);
-                 request.AddQueryParameters(_param_TemplateCode, information.TemplateCode);
-                 request.AddQueryParameters(_param_TemplateParam, information.TemplateParam);
-
-                 try
-                 {
-                     CommonResponse response = client.GetCommonResponse(request);
-                     var apiResult=JsonConvert.DeserializeObject<AliApiResult>(response.Data);
-                     if(apiResult.Code!= _ApiResult_OK)
-                     {
-                         _logger.Error(new
-                         {
-                             message = "发送短信失败",
-                             response = response.Data,
-                             receivers = receivers,
-                             information = information
-                         });
-                     }
-                 }
-                 catch (ServerException e)
-                 {
-                     _logger.Error(new
-                     {
-                         message = "发送短信失败",
-                         exception=e.Message,
-                         receivers = receivers,
-                         information = information
-                     });
-
-                 }
-                 catch (ClientException e)
-                 {
-                     _logger.Error(new
-                     {
-                         message = "发送短信失败",
-                         exception = e.Message,
-                         receivers = receivers,
-                         information = information
-                     });
-                 }
+                    if (apiResult.Code != _ApiResult_OK)
+                    {
+                        sendErrorLog(Localization.Sy000100.ToString(), receivers, information);
+                    }
+                }
+                catch (ServerException e)
+                {
+                    sendErrorLog(e.Message, receivers, information);
+                }
+                catch (ClientException e)
+                {
+                    sendErrorLog(e.Message, receivers, information);
+                }
             });
         }
 
-        /// <summary>
-        /// 把列表对象号码转换为字符串以逗号分割
-        /// </summary>
-        /// <param name="receivers"></param>
-        /// <returns></returns>
-        /// <remarks>
-        /// author:catdemon
-        /// date:2019-5-22
-        /// </remarks>
-        private string buildPhoneNumbers(List<string> receivers)
+        private void sendErrorLog(string message,string[] receivers, SmsInformation information)
         {
-            StringBuilder result = new StringBuilder();
-
-            //把多个电话号码拼接为以,号分割的字符串
-            receivers.ForEach(s => 
+            _logger.Error(new
             {
-                result.Append($"{s}{_splitPhoneNumber}");
+                message = "发送短信失败",
+                exception = message,
+                receivers = receivers,
+                information = information
             });
-            
-            return result.Remove(result.Length - 1, 1).ToString();
-
-            
-            //去掉末尾的,号
         }
 
         /// <summary>
@@ -167,12 +128,10 @@ namespace Ccshis.Information.Sms.Ali
         /// </remarks> 
         public async Task SendAsync<T>(string oneReceiver, T information)
         {
-            var receiver=new List<string>();
-            receiver.Add(oneReceiver);
-            await send(receiver, information as SmsInformation);
+            await send(new[] { oneReceiver }, information as SmsInformation);
         }
 
-        async Task ISmsSender.SendAsync(List<string> receivers, SmsInformation information)
+        async Task ISmsSender.SendAsync(string[] receivers, SmsInformation information)
         {
             await SendAsync(receivers, information);
         }
