@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="ECommon.Autofac" Version="2.5.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Snowflake.Core" Version="2.0.0" />
   </ItemGroup>
 
